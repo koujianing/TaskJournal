@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjn.TaskJournal.repository.TypeMapper">
+    <resultMap id="BaseResultMap" type="com.kjn.TaskJournal.model.Type">
+        <constructor>
+            <idArg column="id" javaType="_long" jdbcType="BIGINT"/>
+            <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="color" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id, name, color
+    </sql>
+    <select id="selectType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from type
+    </select>
+
+</mapper>

@@ -36,12 +36,12 @@
         <include refid="Base_Column_List"/>
         from task
     </select>
-    <insert id="save" parameterType="com.kjn.TaskJournal.model.Task">
-        INSERT INTO task (
-            <include refid="Insert_Column_List"></include>
-        ) VALUES (
-        #{name}, #{description},#{type_id}, #{link},#{label},#{status},#{is_deleted},#{deadline},#{created_at}
-        )
-    </insert>
+    <!--<insert id="save" parameterType="com.kjn.TaskJournal.model.Task">-->
+        <!--INSERT INTO task (-->
+            <!--<include refid="Insert_Column_List"></include>-->
+        <!--) VALUES (-->
+        <!--#{name}, #{description},#{type_id}, #{link},#{label},#{status},#{is_deleted},#{deadline},#{created_at}-->
+        <!--)-->
+    <!--</insert>-->
 
 </mapper>
