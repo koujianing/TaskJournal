@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjn.TaskJournal.repository.TaskMapper">
+    <!-- TODO:  type="com.kjn.TaskJournal.model."添加引用数据对象类 -->
+    <resultMap id="BaseResultMap" type="com.kjn.TaskJournal.model.Task">
+        <constructor>
+            <idArg column="id" javaType="_long" jdbcType="BIGINT"/>
+            <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="type_id" javaType="_long" jdbcType="BIGINT"/>
+            <arg column="link" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="label" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="status" javaType="_long" jdbcType="BIGINT"/>
+            <!--<arg column="is_archived" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <arg column="is_deleted" javaType="java.lang.String" jdbcType="DATE"/>
+            <arg column="deadline" javaType="java.lang.String" jdbcType="DATE"/>
+            <arg column="created_at" javaType="java.lang.String" jdbcType="DATE"/>
+        </constructor>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id, name, description, type_id, link,label,status,is_deleted,deadline,created_at
+    </sql>
+    <!--TODO:使用添加语句-->
+    <select id="selectByPrimaryKey" parameterType="_long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from task
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectTask" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from task
+    </select>
+</mapper>
