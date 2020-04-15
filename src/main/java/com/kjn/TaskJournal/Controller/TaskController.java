@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Koujianing
@@ -22,9 +23,15 @@ public class TaskController {
 	//注入mapper类
 	@Resource
 	private TaskService taskService;
-	@RequestMapping(value="{id}",method = RequestMethod.GET,produces = "application/json")
-	public Task getTask(@PathVariable long id) throws Exception{
-	    Task task = this.taskService.getTaskById(id);
-	    return task;
+
+	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
+	public Task getTask (@PathVariable long id) throws Exception {
+		Task task = this.taskService.getTaskById(id);
+		return task;
+	}
+	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+	public List<Task> getAllTask () throws Exception {
+		List<Task> task = this.taskService.getTask();
+		return task;
 	}
 }

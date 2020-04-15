@@ -2,6 +2,8 @@ package com.kjn.TaskJournal.repository;
 
 import com.kjn.TaskJournal.model.Task;
 
+import java.util.List;
+
 /**
  * Created by Koujianing
  * Date: 2020/4/14
@@ -9,4 +11,5 @@ import com.kjn.TaskJournal.model.Task;
  */
 public interface TaskMapper {
 	Task selectByPrimaryKey (long id);
+	List<Task> selectTask();
 }

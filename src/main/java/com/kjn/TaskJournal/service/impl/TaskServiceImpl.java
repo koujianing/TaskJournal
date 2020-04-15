@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Koujianing
@@ -22,5 +23,9 @@ public class TaskServiceImpl implements TaskService {
 	public Task getTaskById(long taskId){
 		return taskMapper.selectByPrimaryKey(taskId);
 	}
-
+//	selectTask
+	@Override
+	public List<Task> getTask(){
+	return taskMapper.selectTask();
+}
 }

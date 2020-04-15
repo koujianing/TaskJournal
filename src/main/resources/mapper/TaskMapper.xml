@@ -21,6 +21,9 @@
     <sql id="Base_Column_List">
       id, name, description, type_id, link,label,status,is_deleted,deadline,created_at
     </sql>
+    <sql id="Insert_Column_List">
+      name, description, type_id, link,label,status,is_deleted,deadline,created_at
+    </sql>
     <!--TODO:使用添加语句-->
     <select id="selectByPrimaryKey" parameterType="_long" resultMap="BaseResultMap">
         select
@@ -33,4 +36,12 @@
         <include refid="Base_Column_List"/>
         from task
     </select>
+    <insert id="save" parameterType="com.kjn.TaskJournal.model.Task">
+        INSERT INTO task (
+            <include refid="Insert_Column_List"></include>
+        ) VALUES (
+        #{name}, #{description},#{type_id}, #{link},#{label},#{status},#{is_deleted},#{deadline},#{created_at}
+        )
+    </insert>
+
 </mapper>
