@@ -1,6 +1,7 @@
 package com.kjn.TaskJournal.model;
 
 import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
+import com.kjn.TaskJournal.model.Type;
 
 /**
  * Created by Koujianing
@@ -12,6 +13,7 @@ public class Task {
 	private String name = null;
 	private String description = null;
 	private long type_id = -1;
+	private Type type;
 	private String link = null;
 	private String label = null;
 	private long status = -1;
@@ -34,6 +36,14 @@ public class Task {
 
 	public Task () {
 		super();
+	}
+
+	public Type getType () {
+		return type;
+	}
+
+	public void setType (Type type) {
+		this.type = type;
 	}
 
 	public Task mixinData (Task task) {
@@ -160,6 +170,7 @@ public class Task {
 				", name='" + name + '\'' +
 				", description='" + description + '\'' +
 				", type_id=" + type_id +
+				", type=" + type +
 				", link='" + link + '\'' +
 				", label='" + label + '\'' +
 				", status=" + status +
