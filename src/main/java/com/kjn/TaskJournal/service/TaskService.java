@@ -14,4 +14,5 @@ public interface TaskService {
 	public List<Task> getTask();
 	public void postTask(Task task);
 	public void putTask(Task task);
+	public List<Task> listTask(int page,int pageSize);
 }

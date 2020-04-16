@@ -1,12 +1,10 @@
 package com.kjn.TaskJournal.Controller;
 
+import com.github.pagehelper.PageInfo;
 import com.kjn.TaskJournal.model.Task;
 import com.kjn.TaskJournal.service.TaskService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -33,10 +31,47 @@ public class TaskController {
 		return task;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
+	/**
+	 * Pagehelper 返回数据格式
+	{
+		"total": 7,                    // 所有的数据数量
+	 	"list": [],                    // 返回的数据
+		"pageNum": 2,                  // 当前的页码
+		"pageSize": 2,                 // 每一页的数据数量
+		"size": 2,                     // 搜索出来的数据数量
+		"startRow": 3,                 // 开始的id
+		"endRow": 4,                   // 结束的id
+		"pages": 4,                    // 总页数
+		"prePage": 1,                  // 前一页的页码
+		"nextPage": 3,                 // 后一页的页码
+		"isFirstPage": false,          // 是否是第一页
+		"isLastPage": false,           // 是否是最后一页
+		"hasPreviousPage": true,       // 是否有前一页
+		"hasNextPage": true,           // 是否有后一页
+		"navigatePages": 8,
+		"navigatepageNums": [
+			1,
+			2,
+			3,
+			4
+    	],
+		"navigateFirstPage": 1,
+	 	"navigateLastPage": 4
+	}
+	 */
+	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
 	public List<Task> getAllTask () throws Exception {
 		List<Task> task = this.taskService.getTask();
 		return task;
+	}
+	@RequestMapping(value="",method = RequestMethod.GET, produces = "application/json")
+	public PageInfo<Task> listTask(
+			@RequestParam(value = "page",required =false,defaultValue="1")int page,
+			@RequestParam(value="count",required = false,defaultValue = "5")int pageSize
+	){
+		List<Task> result = this.taskService.listTask(page,pageSize);
+		PageInfo<Task> pi = new PageInfo<Task>(result);
+		return pi;
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
