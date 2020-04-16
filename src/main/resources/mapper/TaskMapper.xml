@@ -46,7 +46,7 @@
         select
         <include refid="Base_Column_List"/>
         from task,`type`
-        where task_id = #{id,jdbcType=BIGINT} AND task.type_id = type_id
+        where task.id = #{id,jdbcType=BIGINT} AND task.type_id = type_id
     </select>
     <select id="selectTask" resultMap="SelectResultMap">
         select
