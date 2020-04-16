@@ -22,7 +22,7 @@
       id, name, description, type_id, link,label,status,is_deleted,deadline,created_at
     </sql>
     <sql id="Insert_Column_List">
-      name, description, type_id, link,label,status,is_deleted,deadline,created_at
+      name, description, type_id, link,label,status,deadline,created_at
     </sql>
     <!--TODO:使用添加语句-->
     <select id="selectByPrimaryKey" parameterType="_long" resultMap="BaseResultMap">
@@ -35,13 +35,22 @@
         select
         <include refid="Base_Column_List"/>
         from task
+        where is_deleted is null
     </select>
-    <!--<insert id="save" parameterType="com.kjn.TaskJournal.model.Task">-->
-        <!--INSERT INTO task (-->
-            <!--<include refid="Insert_Column_List"></include>-->
-        <!--) VALUES (-->
-        <!--#{name}, #{description},#{type_id}, #{link},#{label},#{status},#{is_deleted},#{deadline},#{created_at}-->
-        <!--)-->
-    <!--</insert>-->
+    <insert id="insertTask" parameterType="com.kjn.TaskJournal.model.Task">
+        INSERT INTO task (
+        <include refid="Insert_Column_List"></include>
+        ) VALUES (
+        #{name}, #{description},#{type_id}, #{link},#{label},0,#{deadline},#{created_at}
+        )
+    </insert>
+    <update id="updateTask" parameterType="com.kjn.TaskJournal.model.Task">
+        UPDATE task SET
+        name=#{name}, description=#{description},type_id=#{type_id},
+        link=#{link},label=#{label},
+        status=#{status},is_deleted=#{is_deleted},
+        deadline=#{deadline}
+        WHERE id = #{id}
+    </update>
 
 </mapper>

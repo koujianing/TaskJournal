@@ -12,4 +12,6 @@ import java.util.List;
 public interface TaskMapper {
 	Task selectByPrimaryKey (long id);
 	List<Task> selectTask();
+	void insertTask(Task task);
+	void updateTask(Task task);
 }

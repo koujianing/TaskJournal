@@ -12,4 +12,6 @@ import java.util.List;
 public interface TaskService {
 	public Task getTaskById(long taskId);
 	public List<Task> getTask();
+	public void postTask(Task task);
+	public void putTask(Task task);
 }

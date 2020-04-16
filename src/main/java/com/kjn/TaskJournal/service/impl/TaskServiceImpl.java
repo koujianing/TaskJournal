@@ -28,4 +28,12 @@ public class TaskServiceImpl implements TaskService {
 	public List<Task> getTask(){
 	return taskMapper.selectTask();
 }
+	@Override
+	public void postTask(Task task){
+		taskMapper.insertTask(task);
+	}
+	@Override
+	public void putTask(Task task){
+		taskMapper.updateTask(task);
+	}
 }

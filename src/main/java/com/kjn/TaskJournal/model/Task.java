@@ -8,18 +8,18 @@ import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
  * Time: 22:45
  */
 public class Task {
-	private long id;
-	private String name;
-	private String description;
-	private long type_id;
-	private String link;
-	private String label;
-	private long status;
-	private String is_delete;
-	private String deadline;
-	private String created_at;
+	private long id = -1;
+	private String name = null;
+	private String description = null;
+	private long type_id = -1;
+	private String link = null;
+	private String label = null;
+	private long status = -1;
+	private String is_deleted = null;
+	private String deadline = null;
+	private String created_at = null;
 
-	public Task (long id, String name, String description, long type_id, String link, String label, long status, String is_delete, String deadline, String created_at) {
+	public Task (long id, String name, String description, long type_id, String link, String label, long status, String is_deleted, String deadline, String created_at) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -27,13 +27,50 @@ public class Task {
 		this.link = link;
 		this.label = label;
 		this.status = status;
-		this.is_delete = is_delete;
+		this.is_deleted = is_deleted;
 		this.deadline = deadline;
 		this.created_at = created_at;
 	}
 
-	public Task(){
+	public Task () {
 		super();
+	}
+
+	public Task mixinData (Task task) {
+		/*Task{id=8, name='null', description='null',
+			type_id=0, link='null', label='null',
+			status=0, is_deleted='null',
+			deadline='null', created_at='null'}*/
+
+		if (task.name != null) {
+			this.name = task.name;
+		}
+		if (task.description != null) {
+			this.description = task.description;
+		}
+		if (task.type_id != -1) {
+			this.type_id = task.type_id;
+		}
+		if (task.link != null) {
+			this.link = task.link;
+		}
+		if (task.label != null) {
+			this.label = task.label;
+		}
+		if (task.status != -1) {
+			this.status = task.status;
+		}
+		if (task.is_deleted != null) {
+			this.is_deleted = task.is_deleted;
+		}
+		if (task.deadline != null) {
+			this.deadline = task.deadline;
+		}
+		if (task.created_at != null) {
+			this.created_at = task.created_at;
+		}
+
+		return this;
 	}
 
 	public long getId () {
@@ -93,11 +130,11 @@ public class Task {
 	}
 
 	public String getIs_delete () {
-		return is_delete;
+		return is_deleted;
 	}
 
-	public void setIs_delete (String is_delete) {
-		this.is_delete = is_delete;
+	public void setIs_delete (String is_deleted) {
+		this.is_deleted = is_deleted;
 	}
 
 	public String getDeadline () {
@@ -114,5 +151,21 @@ public class Task {
 
 	public void setCreated_at (String created_at) {
 		this.created_at = created_at;
+	}
+
+	@Override
+	public String toString () {
+		return "Task{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", type_id=" + type_id +
+				", link='" + link + '\'' +
+				", label='" + label + '\'' +
+				", status=" + status +
+				", is_deleted='" + is_deleted + '\'' +
+				", deadline='" + deadline + '\'' +
+				", created_at='" + created_at + '\'' +
+				'}';
 	}
 }
