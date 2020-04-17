@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.security.auth.message.callback.PrivateKeyCallback;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Date;
 
 /**
  * Created by Koujianing
@@ -60,6 +62,22 @@ public class TypeController {
 		type.setId(id);
 		Type newType = oldType.mixinData(type);
 		this.typeService.putType(newType);
-
+	}
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = "application/json")
+	public void deleteType(@PathVariable long id, Type type){
+//		Task oldTask = this.taskService.getTaskById(id);
+//		Task task = new Task();
+//		task.setId(id);
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		task.setIs_delete(df.format(new Date()));
+//		Task newTask = oldTask.mixinData(task);
+//		this.taskService.putTask(newTask);
+		Type oldType = this.typeService.getTypeById(id);
+		Type type1 = new Type();
+		type1.setId(id);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		type.setIs_deleted(df.format(new Date()));
+		Type newType = oldType.mixinData(type);
+		this.typeService.putType(newType);
 	}
 }

@@ -6,11 +6,12 @@
             <idArg column="id" javaType="_long" jdbcType="BIGINT"/>
             <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <arg column="color" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="is_deleted" javaType="java.lang.String" jdbcType="DATE"/>
         </constructor>
     </resultMap>
 
     <sql id="Base_Column_List">
-      id, name, color
+      id, name, color,is_deleted
     </sql>
     <sql id="Insert_Column_List">
       `name`, color
@@ -35,7 +36,7 @@
     </insert>
     <update id="updateType" parameterType="com.kjn.TaskJournal.model.Type">
         UPDATE `type` SET
-        `name`=#{name},color= #{color}
+        `name`=#{name},color= #{color},is_deleted=#{is_deleted}
         where id=#{id}
     </update>
 
