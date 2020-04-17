@@ -12,10 +12,31 @@
     <sql id="Base_Column_List">
       id, name, color
     </sql>
+    <sql id="Insert_Column_List">
+      `name`, color
+    </sql>
+    <select id="selectByPrimaryById" parameterType="_long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `type`
+        where id = #{id}
+    </select>
     <select id="selectType" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from type
     </select>
+    <insert id="insertType" parameterType="com.kjn.TaskJournal.model.Type">
+        INSERT INTO type (
+        <include refid="Insert_Column_List"></include>
+        ) VALUES (
+        #{name}, #{color}
+        )
+    </insert>
+    <update id="updateType" parameterType="com.kjn.TaskJournal.model.Type">
+        UPDATE `type` SET
+        `name`=#{name},color= #{color}
+        where id=#{id}
+    </update>
 
 </mapper>

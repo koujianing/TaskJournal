@@ -19,6 +19,16 @@ public class Type {
 		super();
 	}
 
+	public Type mixinData(Type type){
+		if(type.name != null){
+		this.name = type.name;
+		}
+		if(type.color != null){
+			this.color = type.color;
+		}
+		return this;
+	}
+
 	public long getId () {
 		return id;
 	}

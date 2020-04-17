@@ -11,6 +11,9 @@ import java.util.List;
  * Time: 22:16
  */
 public interface TypeMapper {
+	Type selectByPrimaryById(long id);
 	List<Type> selectType();
 //	List<Task> selectTask();
+	void insertType(Type type);
+	void updateType(Type type);
 }

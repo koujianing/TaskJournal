@@ -91,10 +91,10 @@ public class TaskController {
 	//"" null "null"
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT, produces = "application/json")
 	public void putTask (@PathVariable long id, Task task) throws Exception {
-		Task oldTask = this.taskService.getTaskById(id);
-		long oldStatus = oldTask.getStatus();
-		task.setId(id);
-		Task newTask = oldTask.mixinData(task);
+		Task oldTask = this.taskService.getTaskById(id);//通过id把数据库那一行的数据赋给oldTask
+		long oldStatus = oldTask.getStatus();//
+		task.setId(id);//id赋给task.id
+		Task newTask = oldTask.mixinData(task);//可以单个修改
 		this.taskService.putTask(newTask);
 
 		// 判断是否修改了status字段
