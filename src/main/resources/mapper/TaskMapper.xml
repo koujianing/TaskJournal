@@ -36,7 +36,7 @@
     <sql id="Base_Column_List">
       task.id as task_id , task.name as task_name, `type`.id as type_id ,
       `type`.name as type_name, description,
-      link,label,status,is_deleted,deadline,created_at, color
+      link,label,status,task.is_deleted,deadline,created_at, color
     </sql>
     <sql id="Insert_Column_List">
       name, description, type_id, link,label,status,deadline,created_at
@@ -52,7 +52,7 @@
         select
         <include refid="Base_Column_List"/>
         from task,`type`
-        where is_deleted is null AND task.type_id = type_id
+        where task.is_deleted is null AND task.type_id = type_id
     </select>
     <insert id="insertTask" parameterType="com.kjn.TaskJournal.model.Task">
         INSERT INTO task (
